@@ -13,8 +13,8 @@
 
 int main() {
     std::cout << "Bug Algorithm\n" << std::endl;
-	Grid bugGrid(5, 5);
-	Bug bug(0, 0, 4, 4, bugGrid);
+	Grid bugGrid(25, 25);
+	Bug bug(0, 0, 14, 18, bugGrid);
 
 	while (bug.calculateDirection() != 0)
 	{

@@ -2,6 +2,7 @@
 // Created by Noah Lichtenstein on 9/13/16
 //
 
+#include <math.h>
 #include "Bug.h"
 
 #define BUG 5
@@ -107,17 +108,33 @@ int Bug::sense(int direction)
 
 int Bug::calculateDirection()
 {
+	
 	int xDist = goalCol - colPos;
 	int yDist = goalRow - rowPos;
-	int absX = xDist < 0 ? xDist*-1 : xDist;
-	int absY = yDist < 0 ? yDist*-1 : yDist;
+	//int absX = xDist < 0 ? xDist*-1 : xDist;
+	//int absY = yDist < 0 ? yDist*-1 : yDist;
 
-	if (absY == 0 && absX == 0) return 0;
-	if (absY >= absX && yDist > 0) return NORTH;
-	if (absY >= absX && yDist < 0) return SOUTH;
-	if (absY < absX && xDist > 0) return EAST;
-	if (absY < absX && xDist < 0) return WEST;
-	return -1;
+	int xChanges[5] = { 0, 0, -1, 0, 1 };
+	int yChanges[5] = { 0, -1, 0, 1, 0 };
+	double shortestDist = sqrt(xDist*xDist + yDist*yDist);
+	int direction = 0;
+	for (int i = 0; i < 5; i++)
+	{
+		if (sqrt((xDist + xChanges[i])*(xDist + xChanges[i]) + (yDist + yChanges[i])*(yDist + yChanges[i])) < shortestDist)
+		{
+			shortestDist = sqrt((xDist + xChanges[i])*(xDist + xChanges[i]) + (yDist + yChanges[i])*(yDist + yChanges[i]));
+			direction = i;
+		}
+	}
+
+	return direction;
+
+	//if (absY == 0 && absX == 0) return 0;
+	//if (absY >= absX && yDist > 0) return NORTH;
+	//if (absY >= absX && yDist < 0) return SOUTH;
+	//if (absY < absX && xDist > 0) return EAST;
+	//if (absY < absX && xDist < 0) return WEST;
+	//return -1;
 }
 
 void Bug::setDisplayGrid(bool displayGrid)
