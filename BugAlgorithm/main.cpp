@@ -14,11 +14,20 @@
 int main() {
     std::cout << "Bug Algorithm\n" << std::endl;
 	Grid bugGrid(25, 25);
+	//
 	Bug bug(0, 0, 14, 18, bugGrid);
+	bug.setDisplayGrid(true);
 
 	while (bug.calculateDirection() != 0)
 	{
-		bug.move(bug.calculateDirection());
+		int direction = bug.calculateDirection();
+		if (bug.sense(direction) == 1)
+		{
+			//std::cout << bug.sense(direction) << std::endl;
+			direction++;
+			if (direction == 5) direction = 1;
+		}
+		bug.move(direction);
 	}
 	std::cout << "Goal Found in " << bug.getStepsMoved() << " steps.";
     return 0;
