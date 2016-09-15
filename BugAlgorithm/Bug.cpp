@@ -137,6 +137,13 @@ int Bug::calculateDirection()
 	//return -1;
 }
 
+double Bug::calculateDistance()
+{
+	int xDist = goalRow - rowPos;
+	int yDist = goalCol - colPos;
+	return sqrt(xDist*xDist + yDist*yDist);
+}
+
 void Bug::setDisplayGrid(bool displayGrid)
 {
 	this->displayGrid = displayGrid;
@@ -145,6 +152,16 @@ void Bug::setDisplayGrid(bool displayGrid)
 int Bug::getStepsMoved()
 {
 	return stepsMoved;
+}
+
+int Bug::getRowPos()
+{
+	return rowPos;
+}
+
+int Bug::getColPos()
+{
+	return colPos;
 }
 
 void Bug::printGrid()

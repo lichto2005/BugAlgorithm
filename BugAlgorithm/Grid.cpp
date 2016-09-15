@@ -5,6 +5,11 @@
 #include <iostream>
 #include "Grid.h"
 
+#define NORTH 1
+#define EAST 2
+#define SOUTH 3
+#define WEST 4
+
 Grid::Grid()
 {
     gridArr = new int[100 * 100];
@@ -27,7 +32,7 @@ Grid::Grid(int width, int length)
 
 void Grid::printGrid()
 {
-    for(int i = 0; i < this->length; i++)
+    for(int i = this->length-1; i >= 0; i--)
     {
         for(int j = 0; j < this->width; j++)
         {
@@ -71,4 +76,55 @@ void Grid::setValue(int row, int col, int value)
 int Grid::getValue(int row, int col)
 {
 	return gridArr[index(row,col)];
+}
+
+int Grid::getOppositeCoordinate(int coordinate)
+{
+	switch (coordinate)
+	{
+	case NORTH:
+		return SOUTH;
+	case SOUTH:
+		return NORTH;
+	case EAST:
+		return WEST;
+	case WEST:
+		return EAST;
+	default:
+		return -1;
+	}
+}
+
+int Grid::getNextCoordinate(int coordinate)
+{
+	switch (coordinate)
+	{
+	case NORTH:
+		return EAST;
+	case EAST:
+		return SOUTH;
+	case SOUTH:
+		return WEST;
+	case WEST:
+		return NORTH;
+	default:
+		return -1;
+	}
+}
+
+int Grid::getPrevCoordinate(int coordinate)
+{
+	switch (coordinate)
+	{
+	case NORTH:
+		return WEST;
+	case EAST:
+		return NORTH;
+	case SOUTH:
+		return EAST;
+	case WEST:
+		return SOUTH;
+	default:
+		return -1;
+	}
 }

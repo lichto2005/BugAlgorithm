@@ -22,6 +22,9 @@ public:
 	int index(int row, int col);
 	void setValue(int row, int col, int value);
 	int getValue(int row, int col);
+	static int getOppositeCoordinate(int coordinate);
+	static int getNextCoordinate(int coordinate);
+	static int getPrevCoordinate(int coordinate);
     void printGrid();
 };
 

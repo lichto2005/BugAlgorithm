@@ -22,8 +22,11 @@ public:
 	void move(int direction);
 	int sense(int direction);
 	int calculateDirection();
+	double calculateDistance();
 	void setDisplayGrid(bool displayGrid);
 	int getStepsMoved();
+	int getRowPos();
+	int getColPos();
 };
 
 #endif
