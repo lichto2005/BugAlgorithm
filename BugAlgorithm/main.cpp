@@ -20,12 +20,13 @@ int main() {
 	} while (bugType < 1 || bugType > 2);
 	Grid bugGrid(25, 25);
 	int goalRow = 14, goalCol = 18;
-	Bug bug(0, 0, goalRow, goalCol, bugGrid);
+	int startRow = 0, startCol = 0;
+	Bug bug(startRow, startCol, goalRow, goalCol, bugGrid);
 	bug.setDisplayGrid(true);
 	
 	if (bugType == 2)
 	{
-		Bug mLine(0, 0, goalRow, goalCol, bugGrid);
+		Bug mLine(startRow, startCol, goalRow, goalCol, bugGrid);
 		mLine.setPathVal(MLINE);
 		mLine.setDisplayGrid(false);
 		while (mLine.calculateDirection() != 0)
