@@ -53,16 +53,6 @@ int Grid::getLength()
     return this->length;
 }
 
-void Grid::setWidth(int width)
-{
-
-}
-
-void Grid::setLength(int length)
-{
-
-}
-
 int Grid::index(int row, int col)
 {
 	return col + row * width;

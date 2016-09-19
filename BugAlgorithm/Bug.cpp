@@ -5,22 +5,12 @@
 #include <math.h>
 #include "Bug.h"
 
-#define BUG 5
-#define PATH 2
-#define START 3
-#define GOAL 4
-
-#define NORTH 1
-#define EAST 2
-#define SOUTH 3
-#define WEST 4
-
 Bug::Bug()
 {
 	//noop
 }
 
-Bug::Bug(int rowPos, int colPos, int goalRow, int goalCol, Grid grid)
+Bug::Bug(int rowPos, int colPos, int goalRow, int goalCol, Grid& grid)
 {
 	this->rowPos = rowPos;
 	this->colPos = colPos;
@@ -34,7 +24,7 @@ Bug::Bug(int rowPos, int colPos, int goalRow, int goalCol, Grid grid)
 
 void Bug::move(int direction)
 {
-	grid.setValue(rowPos, colPos, PATH);
+	grid.setValue(rowPos, colPos, pathVal);
 	switch (direction)
 	{
 	case NORTH:
@@ -111,8 +101,6 @@ int Bug::calculateDirection()
 	
 	int xDist = goalCol - colPos;
 	int yDist = goalRow - rowPos;
-	//int absX = xDist < 0 ? xDist*-1 : xDist;
-	//int absY = yDist < 0 ? yDist*-1 : yDist;
 
 	int xChanges[5] = { 0, 0, -1, 0, 1 };
 	int yChanges[5] = { 0, -1, 0, 1, 0 };
@@ -128,13 +116,6 @@ int Bug::calculateDirection()
 	}
 
 	return direction;
-
-	//if (absY == 0 && absX == 0) return 0;
-	//if (absY >= absX && yDist > 0) return NORTH;
-	//if (absY >= absX && yDist < 0) return SOUTH;
-	//if (absY < absX && xDist > 0) return EAST;
-	//if (absY < absX && xDist < 0) return WEST;
-	//return -1;
 }
 
 double Bug::calculateDistance()
@@ -170,4 +151,14 @@ void Bug::printGrid()
 	{
 		grid.printGrid();
 	}
+}
+
+int Bug::getPathVal()
+{
+	return pathVal;
+}
+
+void Bug::setPathVal(int pathVal)
+{
+	this->pathVal = pathVal;
 }

@@ -5,6 +5,18 @@
 #ifndef BUG_H
 #define BUG_H
 
+#define BUG 5
+#define PATH 2
+#define START 3
+#define GOAL 4
+#define MLINE 6
+#define WALL 1
+
+#define NORTH 1
+#define EAST 2
+#define SOUTH 3
+#define WEST 4
+
 #include "Grid.h"
 
 class Bug
@@ -16,9 +28,10 @@ private:
 	int goalRow, goalCol;
 	void printGrid();
 	bool displayGrid = true;
+	int pathVal = PATH;
 public:
 	Bug();
-	Bug(int rowPos, int colPos, int goalRow, int goalCol, Grid grid);
+	Bug(int rowPos, int colPos, int goalRow, int goalCol, Grid& grid);
 	void move(int direction);
 	int sense(int direction);
 	int calculateDirection();
@@ -27,6 +40,8 @@ public:
 	int getStepsMoved();
 	int getRowPos();
 	int getColPos();
+	int getPathVal();
+	void setPathVal(int pathVal);
 };
 
 #endif

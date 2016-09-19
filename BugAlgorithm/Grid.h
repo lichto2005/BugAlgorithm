@@ -17,8 +17,6 @@ public:
     Grid(int width, int length);
     int getWidth();
     int getLength();
-    void setWidth(int width);
-    void setLength(int length);
 	int index(int row, int col);
 	void setValue(int row, int col, int value);
 	int getValue(int row, int col);
