@@ -11,16 +11,19 @@
 #define SOUTH 3
 #define WEST 4
 
-#define BUG_TYPE 2
-
 int main() {
-    std::cout << "Bug Algorithm\n" << std::endl;
+    std::cout << "Bug Algorithm\n" << "Select bug 1 or 2: " << std::endl;
+	int bugType = 0;
+	do
+	{
+		std::cin >> bugType;
+	} while (bugType < 1 || bugType > 2);
 	Grid bugGrid(25, 25);
 	int goalRow = 14, goalCol = 18;
 	Bug bug(0, 0, goalRow, goalCol, bugGrid);
 	bug.setDisplayGrid(true);
 	
-	if (BUG_TYPE == 2)
+	if (bugType == 2)
 	{
 		Bug mLine(0, 0, goalRow, goalCol, bugGrid);
 		mLine.setPathVal(MLINE);
@@ -39,8 +42,13 @@ int main() {
 	{
 		bugGrid.setValue(i, 10, WALL);
 	}
+
+	for (int i = 23; i >= 10; i--)
+	{
+		bugGrid.setValue(i, 15, WALL);
+	}
 	
-	if (BUG_TYPE == 0)
+	if (bugType == 0)
 	{
 		//Bug0
 		while (bug.calculateDirection() != 0)
@@ -55,7 +63,7 @@ int main() {
 			bug.move(direction);
 		}
 	}
-	else if (BUG_TYPE == 1)
+	else if (bugType == 1)
 	{
 		bool onWall;
 		int direction = bug.calculateDirection();
@@ -190,7 +198,7 @@ int main() {
 			}
 		}
 	}
-	else if (BUG_TYPE == 2)
+	else if (bugType == 2)
 	{
 		bugGrid.printGrid();
 		while (bug.calculateDirection() != 0)
